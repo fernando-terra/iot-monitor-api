@@ -1,5 +1,5 @@
 const express = require('express');
-var db        = require('./database/connection')
+var code      = require('./controllers/code')
 
 //SETUP
 const app = express();         
@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 //ROUTES
 const router = express.Router();
 router.get('/', (req, res) => { 
-    db.connect(function(result){
+    code.atuadores(function(result){
         console.log(result);
         res.send(result);
     });
