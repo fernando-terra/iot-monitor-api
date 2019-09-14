@@ -1,5 +1,6 @@
-var helpers   = require('./helpers/utils')
+var helpers   = require('./helpers/utils');
 const paho    = require('paho-mqtt');
+const code    = require('./code');
 
 const broker = {
     host: "192.168.100.12",
@@ -68,7 +69,7 @@ function onMessageArrived(message) {
         data: JSON.parse(message.payloadString)
     }
 
-    console.log(JSON.stringify(data.data), message.destinationName);
+    code.gravarLog(data.data);
 }
 
 module.exports = {
