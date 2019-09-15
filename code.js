@@ -14,6 +14,40 @@ module.exports = {
         });        
     },
 
+    cadastrarAtuador: (res, param) => {
+        var sql = "";
+
+        sql += "INSERT INTO iot.atuadores (nome, porta) VALUES ('";
+        sql += param.nome + "',";
+        sql += param.porta;
+        sql += ")";
+
+        db.executeSqlQuery(sql, (data) => {             
+            res(data.affectedRows > 0);
+        });
+    },
+
+    atualizarAtuador : (res, param) => {
+        var sql = "";
+
+        sql += "UPDATE iot.atuadores SET";
+        sql += " nome = '" + param.nome + "'";
+        sql += ", porta = " + param.porta;
+        sql += " WHERE id = " + parseInt(param.id);
+
+        db.executeSqlQuery(sql, (data) => {             
+            res(data.affectedRows > 0);
+        });  
+    },
+
+    deletarAtuador: (res, param) => {
+        var sql = "DELETE FROM iot.atuadores WHERE id = " + param.id;
+
+        db.executeSqlQuery(sql, (data) => {     
+            res(data.affectedRows > 0);
+        });
+    },
+
     buscarSensores : (res, param) => {
                 
         var sql = "SELECT * FROM iot.sensores";
