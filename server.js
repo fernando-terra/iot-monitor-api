@@ -15,7 +15,8 @@ app.use(bodyParser.json());
 /* ROUTES */ 
 api.get('/atuador', (req, res) => { 
     var id = req.query.id;
-    code.buscarAtuadores((result) => {          
+    code.buscarAtuadores((result) => {
+        res.setHeader("Access-Control-Allow-Origin", "*");          
         res.json(result);
     }, id);
 });

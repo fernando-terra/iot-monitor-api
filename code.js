@@ -42,12 +42,13 @@ module.exports = {
 
     gravarLog : (res, param) => {
                 
-        /*var sql = "INSERT INTO iot.log VALUES (" + param.id +"," + param.data + "," + ")";
+        var sql = "INSERT INTO iot.log"
+                + "(data, origem, topico, mensagem)"
+                + "VALUES"
+                + "(SYSDATE(),'" + param.source + "', '" + param.topic + "', '" + JSON.stringify(param.data) +"')"
 
         db.executeSqlQuery(sql, (data) => {             
             res(data);
-        });*/
-
-        console.log("Gravando log...");
+        });
     }
 }
